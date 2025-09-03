@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Libros Pequeños S.A.</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <h1>Prueba del Sistema de Libros</h1>
+        
+        <div style="margin: 2rem 0;">
+            <h2>Estado del Sistema:</h2>
+            <div id="system-status" style="padding: 1rem; background: #f9f9f9; border-radius: 5px;">
+                <p>Verificando sistema...</p>
+            </div>
+        </div>
+        
+        <div style="margin: 2rem 0;">
+            <h2>Prueba de Login:</h2>
+            <form id="test-login" style="padding: 1rem; background: #f9f9f9; border-radius: 5px;">
+                <div style="margin-bottom: 1rem;">
+                    <label>Email: <input type="email" id="test-email" value="admin@librospequenos.com" style="margin-left: 1rem; padding: 0.5rem;"></label>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>Password: <input type="password" id="test-password" value="admin123" style="margin-left: 1rem; padding: 0.5rem;"></label>
+                </div>
+                <button type="submit" style="padding: 0.5rem 1rem; background: #FFD700; border: none; border-radius: 3px;">Probar Login</button>
+            </form>
+            <div id="login-result" style="margin-top: 1rem;"></div>
+        </div>
+        
+        <div style="margin: 2rem 0;">
+            <h2>Libros Cargados:</h2>
+            <div id="books-status" style="padding: 1rem; background: #f9f9f9; border-radius: 5px;">
+                <p>Cargando libros...</p>
+            </div>
+            <div id="books-preview" style="margin-top: 1rem;"></div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/models.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Script de prueba
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                // Verificar estado del sistema
+                const statusDiv = document.getElementById('system-status');
+                let status = '<ul>';
+                status += `<li>Libros cargados: ${libros ? libros.length : 0}</li>`;
+                status += `<li>Usuarios cargados: ${usuarios ? usuarios.length : 0}</li>`;
+                status += `<li>Carrito inicializado: ${carrito ? 'Sí' : 'No'}</li>`;
+                status += '</ul>';
+                statusDiv.innerHTML = status;
+                
+                // Mostrar preview de libros
+                const booksStatus = document.getElementById('books-status');
+                const booksPreview = document.getElementById('books-preview');
+                
+                if (libros && libros.length > 0) {
+                    booksStatus.innerHTML = `<p style="color: green;">✓ ${libros.length} libros cargados correctamente</p>`;
+                    
+                    // Mostrar los primeros 3 libros
+                    const preview = libros.slice(0, 3).map(libro => `
+                        <div style="border: 1px solid #ddd; padding: 1rem; margin: 0.5rem; border-radius: 5px; display: inline-block; width: 250px; vertical-align: top;">
+                            <h4>${libro.titulo}</h4>
+                            <p><strong>Autor:</strong> ${libro.autor}</p>
+                            <p><strong>Precio:</strong> S/ ${libro.precio}</p>
+                            <p><strong>Stock:</strong> ${libro.stock}</p>
+                            <p><strong>Categoría:</strong> ${libro.categoria}</p>
+                        </div>
+                    `).join('');
+                    
+                    booksPreview.innerHTML = '<h3>Preview de libros:</h3>' + preview;
+                } else {
+                    booksStatus.innerHTML = '<p style="color: red;">✗ Error: No se pudieron cargar los libros</p>';
+                }
+                
+                // Configurar prueba de login
+                document.getElementById('test-login').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('test-email').value;
+                    const password = document.getElementById('test-password').value;
+                    
+                    const usuario = usuarios.find(u => u.email === email && u.password === password);
+                    const resultDiv = document.getElementById('login-result');
+                    
+                    if (usuario) {
+                        resultDiv.innerHTML = `<p style="color: green;">✓ Login exitoso: ${usuario.nombre} (${usuario.rol})</p>`;
+                    } else {
+                        resultDiv.innerHTML = `<p style="color: red;">✗ Login fallido: credenciales incorrectas</p>`;
+                    }
+                });
+                
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

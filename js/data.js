@@ -1,0 +1,297 @@
+// Datos embebidos para evitar problemas de CORS
+const LIBROS_DATA = [
+  {
+    "id": 1,
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "categoria": "Infantil",
+    "precio": 15.99,
+    "stock": 25,
+    "descripcion": "Un clásico de la literatura infantil que narra las aventuras de un pequeño príncipe.",
+    "imagen": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300",
+    "isbn": "978-84-376-0494-7"
+  },
+  {
+    "id": 2,
+    "titulo": "Cien Años de Soledad",
+    "autor": "Gabriel García Márquez",
+    "categoria": "Literatura",
+    "precio": 22.50,
+    "stock": 15,
+    "descripcion": "Obra maestra del realismo mágico que narra la historia de la familia Buendía.",
+    "imagen": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300",
+    "isbn": "978-84-376-0495-4"
+  },
+  {
+    "id": 3,
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "categoria": "Clásicos",
+    "precio": 28.75,
+    "stock": 10,
+    "descripcion": "La obra cumbre de la literatura española y una de las más importantes de la literatura universal.",
+    "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+    "isbn": "978-84-376-0496-1"
+  },
+  {
+    "id": 4,
+    "titulo": "Harry Potter y la Piedra Filosofal",
+    "autor": "J.K. Rowling",
+    "categoria": "Fantasía",
+    "precio": 19.99,
+    "stock": 30,
+    "descripcion": "El primer libro de la saga del joven mago Harry Potter.",
+    "imagen": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=300",
+    "isbn": "978-84-376-0497-8"
+  },
+  {
+    "id": 5,
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "categoria": "Distopía",
+    "precio": 16.50,
+    "stock": 20,
+    "descripcion": "Una novela distópica que presenta un futuro totalitario y vigilado.",
+    "imagen": "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300",
+    "isbn": "978-84-376-0498-5"
+  },
+  {
+    "id": 6,
+    "titulo": "Donde Viven los Monstruos",
+    "autor": "Maurice Sendak",
+    "categoria": "Infantil",
+    "precio": 12.99,
+    "stock": 35,
+    "descripcion": "Un clásico libro ilustrado sobre la imaginación y las aventuras de Max.",
+    "imagen": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300",
+    "isbn": "978-84-376-0499-2"
+  },
+  {
+    "id": 7,
+    "titulo": "La Muy Hambrienta Oruga",
+    "autor": "Eric Carle",
+    "categoria": "Infantil",
+    "precio": 10.99,
+    "stock": 40,
+    "descripcion": "Un libro educativo sobre el ciclo de vida de una mariposa, perfecto para los más pequeños.",
+    "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+    "isbn": "978-84-376-0500-5"
+  },
+  {
+    "id": 8,
+    "titulo": "Buenas Noches, Luna",
+    "autor": "Margaret Wise Brown",
+    "categoria": "Infantil",
+    "precio": 11.50,
+    "stock": 30,
+    "descripcion": "Un tierno libro para la hora de dormir que ha calmado a generaciones de niños.",
+    "imagen": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300",
+    "isbn": "978-84-376-0501-2"
+  },
+  {
+    "id": 9,
+    "titulo": "El Señor de los Anillos: La Comunidad del Anillo",
+    "autor": "J.R.R. Tolkien",
+    "categoria": "Fantasía",
+    "precio": 24.99,
+    "stock": 18,
+    "descripcion": "El inicio de la épica aventura en la Tierra Media.",
+    "imagen": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=300",
+    "isbn": "978-84-376-0502-9"
+  },
+  {
+    "id": 10,
+    "titulo": "Las Crónicas de Narnia: El León, la Bruja y el Ropero",
+    "autor": "C.S. Lewis",
+    "categoria": "Fantasía",
+    "precio": 18.75,
+    "stock": 22,
+    "descripcion": "La mágica historia de cuatro hermanos que descubren un mundo fantástico.",
+    "imagen": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300",
+    "isbn": "978-84-376-0503-6"
+  },
+  {
+    "id": 11,
+    "titulo": "Orgullo y Prejuicio",
+    "autor": "Jane Austen",
+    "categoria": "Clásicos",
+    "precio": 20.50,
+    "stock": 16,
+    "descripcion": "Una novela romántica que explora temas de amor, clase social y primeras impresiones.",
+    "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+    "isbn": "978-84-376-0504-3"
+  },
+  {
+    "id": 12,
+    "titulo": "Matar a un Ruiseñor",
+    "autor": "Harper Lee",
+    "categoria": "Clásicos",
+    "precio": 19.99,
+    "stock": 14,
+    "descripcion": "Una poderosa historia sobre la justicia, la moralidad y el crecimiento en el sur de Estados Unidos.",
+    "imagen": "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300",
+    "isbn": "978-84-376-0505-0"
+  },
+  {
+    "id": 13,
+    "titulo": "El Gran Gatsby",
+    "autor": "F. Scott Fitzgerald",
+    "categoria": "Clásicos",
+    "precio": 17.25,
+    "stock": 20,
+    "descripcion": "Una crítica brillante del sueño americano ambientada en los años 20.",
+    "imagen": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300",
+    "isbn": "978-84-376-0506-7"
+  },
+  {
+    "id": 14,
+    "titulo": "La Casa de los Espíritus",
+    "autor": "Isabel Allende",
+    "categoria": "Literatura",
+    "precio": 23.50,
+    "stock": 12,
+    "descripcion": "Una saga familiar que mezcla realismo mágico con historia política latinoamericana.",
+    "imagen": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300",
+    "isbn": "978-84-376-0507-4"
+  },
+  {
+    "id": 15,
+    "titulo": "Rayuela",
+    "autor": "Julio Cortázar",
+    "categoria": "Literatura",
+    "precio": 21.75,
+    "stock": 18,
+    "descripcion": "Una novela experimental que puede leerse de múltiples maneras.",
+    "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+    "isbn": "978-84-376-0508-1"
+  },
+  {
+    "id": 16,
+    "titulo": "Un Mundo Feliz",
+    "autor": "Aldous Huxley",
+    "categoria": "Distopía",
+    "precio": 18.99,
+    "stock": 25,
+    "descripcion": "Una visión perturbadora de una sociedad futura controlada por la tecnología y las drogas.",
+    "imagen": "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300",
+    "isbn": "978-84-376-0509-8"
+  },
+  {
+    "id": 17,
+    "titulo": "Fahrenheit 451",
+    "autor": "Ray Bradbury",
+    "categoria": "Distopía",
+    "precio": 16.75,
+    "stock": 28,
+    "descripcion": "Una sociedad donde los libros están prohibidos y los bomberos los queman.",
+    "imagen": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300",
+    "isbn": "978-84-376-0510-4"
+  },
+  {
+    "id": 18,
+    "titulo": "Matemáticas Divertidas para Niños",
+    "autor": "Dr. María González",
+    "categoria": "Educativo",
+    "precio": 14.99,
+    "stock": 35,
+    "descripcion": "Aprende matemáticas de forma divertida con ejercicios y juegos interactivos.",
+    "imagen": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300",
+    "isbn": "978-84-376-0511-1"
+  },
+  {
+    "id": 19,
+    "titulo": "Ciencias Naturales para Pequeños Exploradores",
+    "autor": "Prof. Carlos Mendez",
+    "categoria": "Educativo",
+    "precio": 16.50,
+    "stock": 30,
+    "descripcion": "Descubre el mundo natural a través de experimentos simples y explicaciones claras.",
+    "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+    "isbn": "978-84-376-0512-8"
+  },
+  {
+    "id": 20,
+    "titulo": "Historia del Mundo para Niños",
+    "autor": "Dra. Ana Rodríguez",
+    "categoria": "Educativo",
+    "precio": 19.25,
+    "stock": 25,
+    "descripcion": "Un viaje fascinante a través de la historia mundial adaptado para mentes jóvenes.",
+    "imagen": "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300",
+    "isbn": "978-84-376-0513-5"
+  },
+  {
+    "id": 21,
+    "titulo": "El Misterio de la Casa Abandonada",
+    "autor": "Detective Stories Inc.",
+    "categoria": "Misterio",
+    "precio": 13.99,
+    "stock": 22,
+    "descripcion": "Una emocionante aventura de misterio perfecta para jóvenes lectores.",
+    "imagen": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300",
+    "isbn": "978-84-376-0514-2"
+  },
+  {
+    "id": 22,
+    "titulo": "Los Secretos del Bosque Encantado",
+    "autor": "Luna Martínez",
+    "categoria": "Aventura",
+    "precio": 15.75,
+    "stock": 28,
+    "descripcion": "Una aventura mágica llena de criaturas fantásticas y lecciones de amistad.",
+    "imagen": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300",
+    "isbn": "978-84-376-0515-9"
+  },
+  {
+    "id": 23,
+    "titulo": "Piratas del Caribe Dorado",
+    "autor": "Capitán Aventura",
+    "categoria": "Aventura",
+    "precio": 17.50,
+    "stock": 20,
+    "descripcion": "Únete a la tripulación en busca del tesoro más grande de todos los tiempos.",
+    "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+    "isbn": "978-84-376-0516-6"
+  },
+  {
+    "id": 24,
+    "titulo": "Cuentos de Hadas Modernos",
+    "autor": "Hermanas Grimm 2.0",
+    "categoria": "Cuentos",
+    "precio": 12.25,
+    "stock": 32,
+    "descripcion": "Versiones actualizadas de los cuentos clásicos con valores contemporáneos.",
+    "imagen": "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=300",
+    "isbn": "978-84-376-0517-3"
+  },
+  {
+    "id": 25,
+    "titulo": "Fábulas con Moraleja",
+    "autor": "Esopo Moderno",
+    "categoria": "Cuentos",
+    "precio": 11.99,
+    "stock": 38,
+    "descripcion": "Historias cortas con enseñanzas valiosas para el desarrollo moral de los niños.",
+    "imagen": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300",
+    "isbn": "978-84-376-0518-0"
+  }
+];
+
+const USUARIOS_DATA = [
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "email": "admin@librospequenos.com",
+    "password": "admin123",
+    "rol": "ADMIN",
+    "fechaRegistro": "2024-01-01"
+  },
+  {
+    "id": 2,
+    "nombre": "Usuario Demo",
+    "email": "usuario@demo.com",
+    "password": "usuario123",
+    "rol": "USUARIO",
+    "fechaRegistro": "2024-01-15"
+  }
+];

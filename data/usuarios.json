@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "email": "admin@librospequenos.com",
+    "password": "admin123",
+    "rol": "ADMIN",
+    "fechaRegistro": "2024-01-01"
+  },
+  {
+    "id": 2,
+    "nombre": "Usuario Demo",
+    "email": "usuario@demo.com",
+    "password": "usuario123",
+    "rol": "USUARIO",
+    "fechaRegistro": "2024-01-15"
+  }
+]

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros Pequeños S.A. - Inicio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Libros Pequeños S.A.</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/libros.html" class="nav-link">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="carrito-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="carrito-count">0</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="admin-panel" style="display: none;">
+                    <a href="pages/admin.html" class="nav-link">Panel Admin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bienvenido a Libros Pequeños S.A.</h1>
+                <p class="hero-subtitle">Tu librería de confianza para encontrar los mejores libros</p>
+                <p class="hero-description">
+                    Somos una PyME dedicada a la venta de libros impresos de alta calidad para niños y educadores. 
+                    Ofrecemos una amplia selección de libros con ilustraciones y contenido estructurado, 
+                    diseñada para promover la lectura en los más pequeños.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Libros disponibles</p>
+                    </div>
+                    <div class="stat">
+                        <h3>1000+</h3>
+                        <p>Clientes satisfechos</p>
+                    </div>
+                    <div class="stat">
+                        <h3>15+</h3>
+                        <p>Años de experiencia</p>
+                    </div>
+                </div>
+                <a href="pages/libros.html" class="cta-button">Explorar Catálogo</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>¿Por qué elegir Libros Pequeños S.A.?</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-book"></i>
+                        <h3>Calidad Garantizada</h3>
+                        <p>Libros impresos de alta calidad con ilustraciones vibrantes y contenido educativo.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-child"></i>
+                        <h3>Para Niños y Educadores</h3>
+                        <p>Contenido especializado diseñado para promover la lectura en los más pequeños.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Envío Rápido</h3>
+                        <p>Entrega rápida y segura en todo el país para que disfrutes tus libros cuanto antes.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-heart"></i>
+                        <h3>Pasión por la Lectura</h3>
+                        <p>Más de 15 años fomentando el amor por la lectura en niños y familias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Libros Pequeños S.A.</h3>
+                <p>Tu librería de confianza desde 2009</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="pages/libros.html">Libros</a></li>
+                    <li><a href="pages/login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-envelope"></i> info@librospequenos.com</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Libros Pequeños S.A. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal del Carrito -->
+    <div id="carrito-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Carrito de Compras</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="carrito-items"></div>
+                <div class="carrito-total">
+                    <h3>Total: $<span id="total-precio">0.00</span></h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="vaciar-carrito" class="btn-secondary">Vaciar Carrito</button>
+                <button id="procesar-pago" class="btn-primary">Procesar Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pago -->
+    <div id="pago-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Procesando Pago</h2>
+            </div>
+            <div class="modal-body">
+                <div id="pago-procesando" class="pago-animation">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Procesando su pago...</p>
+                </div>
+                <div id="pago-exitoso" class="pago-success" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <p>¡Pago procesado exitosamente!</p>
+                    <p>Gracias por su compra.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/models.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

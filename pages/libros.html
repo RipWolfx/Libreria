@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Libros - Libros Pequeños S.A.</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Libros Pequeños S.A.</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="libros.html" class="nav-link active">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="carrito-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="carrito-count">0</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="admin-panel" style="display: none;">
+                    <a href="admin.html" class="nav-link">Panel Admin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="container">
+            <h1>Catálogo de Libros</h1>
+            
+            <!-- Filtros de búsqueda -->
+            <section class="filters-section">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Buscar por título o autor...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="filters-container">
+                    <select id="categoria-filter">
+                        <option value="">Todas las categorías</option>
+                        <option value="Infantil">Infantil</option>
+                        <option value="Literatura">Literatura</option>
+                        <option value="Clásicos">Clásicos</option>
+                        <option value="Fantasía">Fantasía</option>
+                        <option value="Distopía">Distopía</option>
+                        <option value="Educativo">Educativo</option>
+                        <option value="Misterio">Misterio</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Cuentos">Cuentos</option>
+                    </select>
+                    
+                    <select id="precio-filter">
+                        <option value="">Todos los precios</option>
+                        <option value="0-15">S/ 0 - S/ 15</option>
+                        <option value="15-20">S/ 15 - S/ 20</option>
+                        <option value="20-25">S/ 20 - S/ 25</option>
+                        <option value="25+">S/ 25+</option>
+                    </select>
+                    
+                    <button id="clear-filters">Limpiar Filtros</button>
+                </div>
+                
+                <div class="results-info">
+                    <span id="results-count">0 libros encontrados</span>
+                </div>
+            </section>
+
+            <!-- Grid de libros -->
+            <section class="libros-grid" id="libros-container">
+                <!-- Los libros se cargarán dinámicamente aquí -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal para seleccionar cantidad -->
+    <div id="cantidad-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="cantidad-modal-title">Seleccionar Cantidad</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="libro-info">
+                    <img id="cantidad-libro-imagen" src="" alt="" class="cantidad-libro-img">
+                    <div class="libro-detalles">
+                        <h3 id="cantidad-libro-titulo"></h3>
+                        <p id="cantidad-libro-autor"></p>
+                        <p class="precio" id="cantidad-libro-precio"></p>
+                        <p class="stock" id="cantidad-libro-stock"></p>
+                    </div>
+                </div>
+                <div class="cantidad-selector">
+                    <label for="cantidad-input">Cantidad:</label>
+                    <div class="cantidad-controls">
+                        <button type="button" class="btn-cantidad" id="btn-menos">-</button>
+                        <input type="number" id="cantidad-input" min="1" max="1" value="1">
+                        <button type="button" class="btn-cantidad" id="btn-mas">+</button>
+                    </div>
+                </div>
+                <div class="total-preview">
+                    <p>Total: <span id="total-preview">S/ 0.00</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelar-cantidad">Cancelar</button>
+                <button type="button" class="btn-primary" id="confirmar-cantidad">Agregar al Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Libros Pequeños S.A.</h3>
+                <p>Tu librería de confianza desde 2009</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="libros.html">Libros</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-envelope"></i> info@librospequenos.com</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Libros Pequeños S.A. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal del Carrito -->
+    <div id="carrito-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Carrito de Compras</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="carrito-items"></div>
+                <div class="carrito-total">
+                    <h3>Total: S/ <span id="total-precio">0.00</span></h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="vaciar-carrito" class="btn-secondary">Vaciar Carrito</button>
+                <button id="procesar-pago" class="btn-primary">Procesar Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pago -->
+    <div id="pago-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Procesando Pago</h2>
+            </div>
+            <div class="modal-body">
+                <div id="pago-procesando" class="pago-animation">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Procesando su pago...</p>
+                </div>
+                <div id="pago-exitoso" class="pago-success" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <p>¡Pago procesado exitosamente!</p>
+                    <p>Gracias por su compra.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/models.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/libros.js"></script>
+</body>
+</html>

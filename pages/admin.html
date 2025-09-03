@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Libros Pequeños S.A.</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Libros Pequeños S.A.</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="libros.html" class="nav-link">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="carrito-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="carrito-count">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link active">Panel Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="logout-btn">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="admin-container">
+            <h1>Panel de Administración</h1>
+            
+            <!-- Tabs de administración -->
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="dashboard">Dashboard</button>
+                <button class="admin-tab-btn" data-tab="usuarios">Usuarios</button>
+                <button class="admin-tab-btn" data-tab="libros">Libros</button>
+            </div>
+            
+            <!-- Dashboard -->
+            <div id="dashboard-section" class="admin-section">
+                <h2>Dashboard</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="total-usuarios">0</h3>
+                            <p>Usuarios Registrados</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <div class="stat-info">
+                            <h3 id="total-libros">0</h3>
+                            <p>Libros en Catálogo</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="stat-info">
+                            <h3 id="total-ventas">0</h3>
+                            <p>Ventas Realizadas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gestión de Usuarios -->
+            <div id="usuarios-section" class="admin-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Gestión de Usuarios</h2>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Fecha Registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usuarios-table-body">
+                            <!-- Los usuarios se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Gestión de Libros -->
+            <div id="libros-section" class="admin-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Gestión de Libros</h2>
+                    <button class="btn-primary" id="agregar-libro-btn">
+                        <i class="fas fa-plus"></i> Agregar Libro
+                    </button>
+                </div>
+                
+                <div class="libros-filters">
+                    <input type="text" id="admin-search-libros" placeholder="Buscar por título, autor o categoría...">
+                    <select id="admin-categoria-filter">
+                        <option value="">Todas las categorías</option>
+                        <option value="Infantil">Infantil</option>
+                        <option value="Literatura">Literatura</option>
+                        <option value="Clásicos">Clásicos</option>
+                        <option value="Fantasía">Fantasía</option>
+                        <option value="Distopía">Distopía</option>
+                        <option value="Educativo">Educativo</option>
+                        <option value="Misterio">Misterio</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Cuentos">Cuentos</option>
+                    </select>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Imagen</th>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="libros-table-body">
+                            <!-- Los libros se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar/editar libro -->
+    <div id="libro-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="libro-modal-title">Agregar Libro</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="libro-form">
+                    <input type="hidden" id="libro-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="libro-titulo">Título:</label>
+                            <input type="text" id="libro-titulo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="libro-autor">Autor:</label>
+                            <input type="text" id="libro-autor" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="libro-categoria">Categoría:</label>
+                            <select id="libro-categoria" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="Infantil">Infantil</option>
+                                <option value="Literatura">Literatura</option>
+                                <option value="Clásicos">Clásicos</option>
+                                <option value="Fantasía">Fantasía</option>
+                                <option value="Distopía">Distopía</option>
+                                <option value="Educativo">Educativo</option>
+                                <option value="Misterio">Misterio</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Cuentos">Cuentos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="libro-isbn">ISBN:</label>
+                            <input type="text" id="libro-isbn" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="libro-precio">Precio (S/):</label>
+                            <input type="number" id="libro-precio" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="libro-stock">Stock:</label>
+                            <input type="number" id="libro-stock" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="libro-imagen">URL de la imagen:</label>
+                        <input type="url" id="libro-imagen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="libro-descripcion">Descripción:</label>
+                        <textarea id="libro-descripcion" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelar-libro">Cancelar</button>
+                <button type="submit" form="libro-form" class="btn-primary" id="guardar-libro">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar usuario -->
+    <div id="usuario-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="usuario-modal-title">Editar Usuario</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="usuario-form">
+                    <input type="hidden" id="usuario-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="usuario-nombre">Nombre completo:</label>
+                            <input type="text" id="usuario-nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario-email">Email:</label>
+                            <input type="email" id="usuario-email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="usuario-password">Nueva contraseña:</label>
+                            <input type="password" id="usuario-password" placeholder="Dejar vacío para no cambiar">
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario-rol">Rol:</label>
+                            <select id="usuario-rol" required>
+                                <option value="USUARIO">Usuario</option>
+                                <option value="ADMIN">Administrador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuario-fecha-registro">Fecha de registro:</label>
+                        <input type="date" id="usuario-fecha-registro" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="usuario-activo" checked>
+                            Usuario activo
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelar-usuario">Cancelar</button>
+                <button type="submit" form="usuario-form" class="btn-primary" id="guardar-usuario">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Libros Pequeños S.A.</h3>
+                <p>Tu librería de confianza desde 2009</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="libros.html">Libros</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-envelope"></i> info@librospequenos.com</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Libros Pequeños S.A. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/models.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
